@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="./stijl/stijl.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="container_form">
+        <h2>Register</h2>
+        <div id="registreerForm">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" />
+
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" />
+
+          <button id="registreer">Registreer</button>
+        </div>
+        <hr />
+        <h2>User List</h2>
+        <div id="filterForm">
+          <label for="filter">Filter</label>
+          <input type="text" id="filter" name="filter" />
+          <button id="filter">Filter</button>
+        </div>
+        <ul>
+          <li>
+            <span class="username">JohnDoe</span>
+            <span class="email">johndoe@example.com</span>
+          </li>
+          <li class="dubbelUser">
+            <span class="username">JohnDoe</span>
+            <span class="email">johndoe@example.com</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
