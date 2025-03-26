@@ -34,26 +34,31 @@ const LijstNamen = document.querySelector("#lijstNamen");
 
 //namen wissen
 LijstNamen.innerHTML = "";
-updateLijst();
+updateLijst(users);
 
 //namen toeveogen in lijst
-function updateLijst() {
+function updateLijst(Lijst) {
   LijstNamen.innerHTML = "";
-  users.forEach((user) => {
+  Lijst.forEach((user) => {
     const listItem = document.createElement("li");
     const username = document.createElement("span");
     const email = document.createElement("span");
+    const Deletebtn = document.createElement("button");
+    Deletebtn.innerHTML = "DEL";
+    Deletebtn.addEventListener("click", DeleteUser);
+    Deletebtn.className = user.fullname;
     username.className = "username";
     email.className = "email";
     username.innerHTML = user.fullname;
     email.innerHTML = user.email;
-    if (checkDubbelUser(user.fullname) == true) {
+    if (checkDubbelUser(user.fullname) >= 2) {
       listItem.className = "dubbelUser";
     } else {
       listItem.className = "";
     }
     listItem.appendChild(username);
     listItem.appendChild(email);
+    listItem.appendChild(Deletebtn);
     LijstNamen.appendChild(listItem);
   });
 }
@@ -66,7 +71,7 @@ function checkDubbelUser(userName) {
       i++;
     }
   });
-  console.log(i);
+  return i;
 }
 
 //registreren van nieuwe gebruiker
@@ -91,7 +96,7 @@ function addUser() {
       email: InputFieldEmail.value,
       password: InputFieldPassword.value,
     });
-    updateLijst();
+    updateLijst(users);
   }
 }
 
@@ -106,5 +111,15 @@ function FilterName() {
   if (InputFieldFilter.value.length < 4) {
     FilterWarning.innerHTML = "filter incorrect";
   } else {
+    let gefilterdeUsers = users;
+    for (let i = 0; i < InputFieldFilter.value.length; i++) {
+      gefilterdeUsers = gefilterdeUsers.filter(
+        (user) => user.fullname[i] == InputFieldFilter.value[i]
+      );
+    }
+    updateLijst(gefilterdeUsers);
   }
 }
+
+//delete user
+function DeleteUser() {}
